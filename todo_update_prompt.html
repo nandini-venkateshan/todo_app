@@ -44,7 +44,7 @@
         var order = [];
         var wip = [];
         var done = [];
-        let orderItem;
+      
 
 
         function add() {
@@ -76,12 +76,12 @@
 
 
         function eventWip(incomingIndex) {
-            let item = document.getElementById("textbox").value;
-            alert(item);
-            let orderItem=prompt("Enter data to Work In Progress").value;
-            alert(item+orderItem);
-            order.push(result);
-            wip.push(order[incomingIndex]);
+            let promptMsg=prompt("Enter data to Work In Progress","");
+            let inputStr=order[incomingIndex];
+            let result=inputStr + promptMsg;
+           // alert(result);
+           wip.push(result);
+           // wip.push(order[incomingIndex]);
             order = order.filter((ele, index) => index !== incomingIndex);
             addToOrder();
             addToWip();
@@ -101,8 +101,13 @@
         }
 
         function eventDone(incomingIndex) {
-            prompt("hello")
-            done.push(wip[incomingIndex]);
+            let promptMsg=prompt("Enter data to done","");
+            let inputStr=wip[incomingIndex];
+            let result=inputStr + promptMsg;
+           // alert(result);
+           done.push(result);
+            // prompt("Enter ")
+           // done.push(wip[incomingIndex]);
             wip = wip.filter((ele, index) => index !== incomingIndex);
             addToWip();
             addToDone();
@@ -127,9 +132,9 @@
             if (check) {
                 done = done.filter((value, index) => index !== incomingIndex);
             }
-            addDone();
+            addToDone();
         } addToOrder();
-        addDone();
+        addToDone();
 
 
 
