@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="todo_style_new.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <main>
+        <div class="todo">
+            <h1>To Do</h1>
+            <div class="cards" id="todocards"> </div>
+            <div class="done">
+                <h1>Done</h1>
+                <div class="cards" id="donecards">
+                    <div>
+                        <p class="content">${cur}</p>
+                        <p class="clickbutton"><i class="fa fa-check-circle-o" onclick="eventfn(${index})"></i></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <button onclick="func()">+</button>
+    </main>
+    <script>
+
+        var todo = ["TASK4", "TASK3", "TASK2", "TASK1"];
+        var done = ["TASK3", "TASK2", "TASK1"]
+        function func() {
+            let item = prompt("Enter Task");
+            if(item != null){
+                todo.push(item);
+            addTodo();
+            }
+           
+        }
+        function addTodo() {
+            let ar = todo.map((cur, index) => {
+                return `<div>
+           <p class="content">${cur}</p>
+           <p class="clickbutton"><i class="fa fa-check-circle-o" onclick="eventfn(${index})"></i></p>
+         </div>`
+            });
+            let cards = document.getElementById("todocards");
+            ar = ar.reverse();
+            cards.innerHTML = ar.join('');
+        } function eventfn(incomingIndex) {
+            done.push(todo[incomingIndex]);
+            todo = todo.filter((ele, index) => index !== incomingIndex);
+            addTodo();
+            addDone();
+        } function addDone() {
+            let ar1 = done.map((cur, index) => {
+                return `<div>
+           <p class="content">${cur}</p>
+           <p class="clickbutton"><i class="fa fa-check-circle-o doneBut" onclick="deleteDone(${index})"></i></p>
+         </div>`
+            });
+            ar1 = ar1.reverse();
+            let arr1 = document.getElementById("donecards");
+            arr1.innerHTML = ar1.join('');
+        } function deleteDone(incomingIndex) {
+            var check = confirm("Are you sure?");
+            if (check) {
+                done = done.filter((value, index) => index !== incomingIndex );
+            }
+            addDone();
+        } addTodo();
+        addDone();
+    </script>
+</body>
+
+</html>

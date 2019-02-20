@@ -1,0 +1,92 @@
+*{
+    margin:0px;
+    box-sizing:border-box;
+}
+main{
+    border:1px solid black;
+    margin:40px;
+    padding:20px;
+    background-color:#eaeded;
+
+}
+
+button{
+    border-radius:48%;
+    font-size:30px;
+    background-color: red;
+    color:white;
+    position:fixed;
+    right:50px;
+    z-index:2;
+    bottom:120px;
+    cursor:pointer;
+}
+h1{
+    margin:0px 0px 10px 5px;
+    font-family:Roboto;
+}
+.content{
+    padding:30px;
+}
+
+ p{
+    font-size:20px;
+    font-weight:bold;
+}
+main .done{
+margin-top:40px;
+}
+ .fa-check-circle-o{
+    font-size:30px;
+    color: #e5e8e8 ;
+    position: absolute;
+    z-index:2;
+    right:10px;
+    bottom:10px;
+}
+.addButton{
+    height: 48px;
+    width: 48px;
+    background-color: #ff6666
+   ;
+    color: white;
+    font-size: 31.2px;
+   }
+   .doneBut{
+    background-color: #4fd0b9
+   ;
+    color: white;
+    border: transparent;
+   }
+@media only screen and (min-width:375px)
+{
+    .cards{
+        display:grid;
+        grid-template-columns: repeat(4, 267px);
+        grid-column-gap: 24px;
+    }
+    .cards div{
+       padding:5px 0px 100px 5px;
+        box-shadow:5px 5px 5px grey;
+        background-color:white;
+        margin:10px;
+        position:relative;
+        
+    }
+}
+@media only screen and (min-width:1024px)
+{
+    .cards{
+        display:grid;
+        grid-template-columns: repeat(4, 267px);
+        grid-column-gap: 24px;
+    }  
+    .cards div{
+        /*padding:5px 0px 100px 5px;*/
+        box-shadow:5px 5px 5px grey;
+        background-color:white;
+        margin:10px;
+        position:relative;
+        flex-grow:3;
+    }
+}

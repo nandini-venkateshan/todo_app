@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="todo_app_work.css">
+    <title>TODOAPP</title>
+</head>
+
+<body>
+    <main>
+        <div class="todo">
+            <h1>To Do</h1>
+            <div class="promptBox" id="popUp">
+
+                <input type="text" placeholder="Enter a task" id="textbox">
+                <button id="cancel" onclick="cancel()">Cancel</button>
+                <button id="add" onclick="add()">Add</button>
+            </div>
+            <h1>Order</h1>
+            <div class="cards" id="todocards"> </div>
+            <div class="done">
+                <h1>Work In Progress</h1>
+                <div class="cards" id="wipcards">
+                    <div>
+                        <p class="content">${cur}</p>
+                        <p class="clickbutton"><i class="fa fa-check-circle-o" onclick="addToWip(${index})"></i></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="done">
+                <h1>Done</h1>
+                <div class="cards" id="donecards">
+                     <div>
+                        <p class="content">${cur}</p>
+                        <p class="clickbutton"><i class="fa fa-check-circle-o" onclick="addToWip(${index})"></i></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+
+        var order = [];
+        var wip = [];
+        var done = [];
+
+
+
+        function add() {
+            let item = document.getElementById("textbox").value;
+            document.getElementById("textbox").value = "";
+            if (item != null) {
+                order.push(item);
+                addToOrder();
+            }
+        }
+        function cancel() {
+            var checkDetails = confirm("Are you sure details will be lost?");
+            document.getElementById("demo1").value = ' ';
+
+        }
+        function addToOrder() {
+            let orderArray = order.map((cur, index) => {
+                return `<div>
+           <p class="content">${cur}</p>
+           <p class="clickbutton"><i class="fa fa-check-circle-o" onclick="addToWip(${index})"></i></p>
+         </div>`
+            });
+            let cards = document.getElementById("todocards");
+            orderArray = orderArray.reverse();
+            cards.innerHTML = orderArray.join('');
+        }
+
+
+        function addToWip(incomingIndex) {
+            wip.push(order[incomingIndex]);
+            order = order.filter((ele, index) => index !== incomingIndex);
+            addToOrder();
+            addDone();
+        } 
+        
+        
+        function addDone() {
+            let wipArray = wip.map((cur, index) => {
+                return `<div>
+           <p class="content">${cur}</p>
+           <p class="clickbutton"><i class="fa fa-check-circle-o doneBut" onclick="deleteDone(${index})"></i></p>
+         </div>`
+            });
+            wipArray = wipArray.reverse();
+            let arr1 = document.getElementById("wipcards");
+            arr1.innerHTML = wipArray.join('');
+        }
+
+
+        function deleteDone(incomingIndex) {
+            let item = document.getElementById("textbox").value;
+            prompt("Enter testcase");
+            var check = confirm("Are you sure?");
+            if (check) {
+                wip = wip.filter((value, index) => index !== incomingIndex);
+            }
+            addDone();
+        } addToOrder();
+        addDone();
+
+
+
+    </script>
+</body>
+
+</html>
